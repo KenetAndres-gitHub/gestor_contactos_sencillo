@@ -5,12 +5,19 @@
 {% block body %}
     <h1>Register</h1>
 
+    {% for message in app.flashes('error') %}
+        <div class="flash-error">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.nombres) }}
         {{ form_row(registrationForm.apellidos) }}
-        {{ form_row(registrationForm.sexo) }}
+        {{ form_row(registrationForm.sexo, {'attr': {'required': 'required'}}) }}
+
         {{ form_row(registrationForm.edad) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
